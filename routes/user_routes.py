@@ -54,11 +54,10 @@ def login_user():
         # check if the user already exist or not
         # check if the user does not exist then send error
         if not user_exist:
-            return jsonify({'mssg': 'Incorrect Username or Password', 'status': False}), 400
+            return jsonify({'mssg': 'Incorrect Email or Password', 'status': False}), 400
 
         is_passd_valid, user = User.check_password(email, password)
 
-        print(is_passd_valid, user)
         # if the password do not match send an error
         if not is_passd_valid and user is None:
             return jsonify({'mssg': 'Incorrect Password', 'status': False}), 400
