@@ -25,10 +25,8 @@ class Review:
 
 
     def calculate_avg_score(self) -> Union[float, None]:
-        # Define the fields to include in the average score calculation
         fields = [self.acting, self.music, self.storyline, self.cinematography, self.direction]
         filled_fields = [field for field in fields if field is not None]
-        # Calculate the average score
         if filled_fields:
             return sum(filled_fields) / len(filled_fields)
         else:

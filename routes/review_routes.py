@@ -26,11 +26,9 @@ def add_review():
         if None in [acting, music, storyline, cinematography, direction, review_title, review, isSpoiler]:
             return jsonify({'error': 'All fields are required'}), 400
 
-        # Create a new review object
         new_review = Review(acting=acting, music=music, storyline=storyline, cinematography=cinematography,
                             direction=direction, review_title=review_title, review=review, isSpoiler=isSpoiler, movie_id=movie_id, userName=userName, user_id=user_id)
 
-        # Save the review to the database
         review_id = new_review.save()
 
         return jsonify({'review_id': review_id}), 201
