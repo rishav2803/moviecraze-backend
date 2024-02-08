@@ -14,6 +14,7 @@ def register_user():
         userName = data.get('userName')
         email = data.get('email')
         password = data.get('password')
+        print(userName,email,password)
 
         if not userName:
             return jsonify({'error': 'Username is required'}), 400

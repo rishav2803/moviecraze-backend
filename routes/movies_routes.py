@@ -4,9 +4,27 @@ from flask import Blueprint
 from backend import db
 from bson import json_util
 import json
+import uuid
 
 
 movies_bp = Blueprint('movie', __name__)
+
+
+#just for updation purposees dont use this route
+# @movies_bp.route('/update_movie_ids', methods=['GET'])
+# def update_movie_ids():
+#     try:
+#         movies = db.movies.find()
+#         for movie in movies:
+#             movie_id = uuid.uuid4().hex
+#             db.movies.update_one({'_id': movie['_id']}, {'$set': {'movie_id': movie_id}})
+#         return jsonify({'message': 'Movie IDs updated successfully'}), 200
+#     except Exception as e:
+#         return jsonify({'error': str(e)}), 500
+
+
+
+
 
 # return all the movies of a particular category
 

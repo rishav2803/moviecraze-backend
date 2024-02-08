@@ -1,4 +1,6 @@
 from backend import db
+from backend.helpers.now import tsds_now
+import uuid
 import bcrypt
 
 
@@ -9,14 +11,23 @@ class User:
         self.userName = userName
         self.email = email
         self.password = password
+        self.user_id = uuid.uuid4().hex
+        self.created_at = tsds_now()
+        self.updated_at = tsds_now()
 
     def save(self):
         hashed_password = bcrypt.hashpw(
             self.password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
-        user_data = {'userName': self.userName,
-                     'email': self.email, 'password': hashed_password}
+        user_data = {
+            'user_id': self.user_id,
+            'userName': self.userName,
+            'email': self.email,
+            'password': hashed_password,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
+        }
         result = self.collection.insert_one(user_data)
-        return result.inserted_id
+        return self.user_id
 
     @staticmethod
     # check if particular field already exist or not
