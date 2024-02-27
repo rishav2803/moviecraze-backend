@@ -1,5 +1,5 @@
 from backend import db
-from backend.helpers.now import tsds_now
+from backend.helpers.now import now
 import uuid
 import bcrypt
 
@@ -12,8 +12,8 @@ class User:
         self.email = email
         self.password = password
         self.user_id = uuid.uuid4().hex
-        self.created_at = tsds_now()
-        self.updated_at = tsds_now()
+        self.created_at = now()
+        self.updated_at = now()
 
     def save(self):
         hashed_password = bcrypt.hashpw(

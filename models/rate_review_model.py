@@ -1,5 +1,5 @@
 from backend import db
-from backend.helpers.now import tsds_now
+from backend.helpers.now import now
 from typing import Union
 import uuid
 
@@ -20,8 +20,8 @@ class Review:
         self.review_title = review_title
         self.review = review
         self.isSpoiler = isSpoiler
-        self.created_at = tsds_now()
-        self.updated_at = tsds_now()
+        self.created_at = now()
+        self.updated_at = now()
 
 
     def calculate_avg_score(self) -> Union[float, None]:

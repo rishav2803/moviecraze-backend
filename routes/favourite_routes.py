@@ -14,11 +14,12 @@ favourite_bp = Blueprint('favourite', __name__)
 @favourite_bp.route('/get/favourite/<user_id>', methods=['GET'])
 def get_user_favorites(user_id):
     try:
-        print(user_id)
-        user_favorites = db.user_favorites.find({'user_id': user_id})
+        user_favorites = db.favourites.find({'user_id': user_id})
+        print(user_favorites)
         movie_ids = [favorite['movie_id'] for favorite in user_favorites]
-        movies = db.movies.find({'_id': {'$in': movie_ids}})
-        return json.loads(json_util.dumps(movies))
+        print(movie_ids)
+        movies = db.movies.find({'movie_id': {'$in': movie_ids}})
+        return json.loads(json_util.dumps(movies)),201
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
